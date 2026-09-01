@@ -1,13 +1,17 @@
-import Image from "next/image";
-import {Flow} from "@/components/Flow";
+import { Header } from "@/components/Header";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10" >
-      <h1>Hello</h1>
-        <div>
-            <Flow/>
+    <div className="">
+      <SidebarProvider>
+        <AppSidebar />
+
+        <div className="flex-1">
+          <Header title="Decision Flow" status="Not Saved" />
         </div>
+      </SidebarProvider>
     </div>
   );
 }
