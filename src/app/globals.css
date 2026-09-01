@@ -5,44 +5,59 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0.375rem; /* shadcn's base radius — DESIGN.md "Soft" = 6px */
+  --radius: 0.375rem; /* DESIGN.md standard element radius = 6px */
 
-  /* Core surfaces */
-  --background: #f8f9fa;
-  --foreground: #191c1d;
+  /* DESIGN.md surface scale */
+  --surface: #f8f9fa;
+  --surface-dim: #d9dadb;
+  --surface-bright: #f8f9fa;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f4f5;
+  --surface-container: #edeeef;
+  --surface-container-high: #e7e8e9;
+  --surface-container-highest: #e1e3e4;
+  --on-surface: #191c1d;
+  --on-surface-variant: #464555;
+  --inverse-surface: #2e3132;
+  --inverse-on-surface: #f0f1f2;
+  --outline: #777587;
+  --outline-variant: #c7c4d8;
+  --surface-tint: #4d44e3;
 
-  --card: #ffffff;
-  --card-foreground: #191c1d;
+  /* Semantic tokens used by Tailwind/components */
+  --background: var(--surface);
+  --foreground: var(--on-surface);
 
-  --popover: #ffffff;
-  --popover-foreground: #191c1d;
+  --card: var(--surface-container-lowest);
+  --card-foreground: var(--on-surface);
 
-  /* Brand */
+  --popover: var(--surface-container-lowest);
+  --popover-foreground: var(--on-surface);
+
   --primary: #4f46e5;
   --primary-foreground: #ffffff;
 
   --secondary: #dae2fd;
   --secondary-foreground: #5c647a;
 
-  --muted: #f3f4f5;
-  --muted-foreground: #464555;
+  --muted: var(--surface-container-low);
+  --muted-foreground: var(--on-surface-variant);
 
-  --accent: #edeeef;
-  --accent-foreground: #191c1d;
+  --accent: var(--surface-container);
+  --accent-foreground: var(--on-surface);
 
   --destructive: #ba1a1a;
   --destructive-foreground: #ffffff;
 
-  /* Structural */
   --border: #e5e7eb;
   --input: #e5e7eb;
   --ring: #4f46e5;
 
-  /* Charts (optional — indigo-led categorical scale) */
+  /* Charts: low-chrome, indigo-led categorical scale */
   --chart-1: #4f46e5;
-  --chart-2: #7e3000;
-  --chart-3: #565e74;
-  --chart-4: #a44100;
+  --chart-2: #565e74;
+  --chart-3: #777587;
+  --chart-4: #7e3000;
   --chart-5: #191c1d;
 
   /* Sidebar (shadcn sidebar component vars) */
@@ -57,19 +72,21 @@
 
   /* Fonts */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-display: var(--font-geist-sans, "Geist", ui-sans-serif, system-ui, sans-serif);
+  --font-heading: var(--font-display);
+  --font-mono: var(--font-geist-mono, "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace);
 }
 
-/* This system is light-only per DESIGN.md; keep .dark as a stub so
-   components referencing it don't break if you add dark mode later. */
+/* Dark tokens are kept for compatibility, but the product is tuned for the
+   light high-density palette defined in docs/DESIGN.md. */
 .dark {
-  --background: #191c1d;
-  --foreground: #f0f1f2;
+  color-scheme: dark;
+  --background: var(--inverse-surface);
+  --foreground: var(--inverse-on-surface);
   --card: #2e3132;
-  --card-foreground: #f0f1f2;
+  --card-foreground: var(--inverse-on-surface);
   --popover: #2e3132;
-  --popover-foreground: #f0f1f2;
+  --popover-foreground: var(--inverse-on-surface);
   --primary: #c3c0ff;
   --primary-foreground: #0f0069;
   --secondary: #3f465c;
@@ -77,7 +94,7 @@
   --muted: #2e3132;
   --muted-foreground: #c7c4d8;
   --accent: #3f465c;
-  --accent-foreground: #f0f1f2;
+  --accent-foreground: var(--inverse-on-surface);
   --destructive: #ffb4ab;
   --destructive-foreground: #690005;
   --border: #464555;
@@ -89,7 +106,7 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 2px);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -126,6 +143,7 @@
 
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
   --font-mono: var(--font-mono);
 
   /* DESIGN.md type scale, kept alongside shadcn's variables */
@@ -162,20 +180,28 @@
   --text-label-caps--font-weight: 600;
 
   --shadow-level-2: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-overlay: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    color-scheme: light;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
   body {
     @apply bg-background text-foreground;
+    min-height: 100%;
     font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-weight: 600;
+    letter-spacing: -0.015em;
   }
   code, pre, kbd, samp {
     font-family: var(--font-mono);
