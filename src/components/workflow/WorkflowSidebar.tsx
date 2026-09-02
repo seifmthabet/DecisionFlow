@@ -25,15 +25,16 @@ const WorkflowSidebar = () => {
   ]
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //TODO: Implement search functionality for available nodes
     console.log(event.target.value);
   }
 
   return (
-    <aside className="w-75 h-full bg-gray-100 border-r border-gray-300 ">
+    <aside className="w-75 h-full bg-white border-r border-gray-300 ">
       <div className="p-4">
         <div className="flex items-center space-x-2">
           <Search />
-          <Input placeholder="Search nodes..." onChange={handleSearchChange} />
+          <Input placeholder="Search nodes..." onChange={handleSearchChange} className="flex-1 bg-secondary" />
         </div>
         <div>
           <h4 className="mt-4 mb-2 text-sm font-semibold text-gray-700">Available Nodes</h4>
@@ -41,7 +42,8 @@ const WorkflowSidebar = () => {
             availableNodes.map((node, index) => {
               const Icon = node.icon
               return (
-                <div key={index} className="flex items-center p-2 mb-2 bg-white rounded shadow cursor-pointer hover:bg-gray-200">
+                //TODO: Implement drag-and-drop functionality for nodes
+                <div key={index} className="flex items-center p-2 mb-2 bg-secondary rounded shadow cursor-pointer hover:bg-gray-200">
                   <Icon/>
                   <div className="ml-2">
                     <p className="text-sm font-medium text-gray-800">{node.name}</p>

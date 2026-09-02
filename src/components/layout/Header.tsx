@@ -1,8 +1,14 @@
 "use client";
 
-import { Circle, PlayIcon, Save, SettingsIcon } from "lucide-react";
+import { Circle, MoreHorizontal, PlayIcon, Save, SettingsIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
@@ -80,6 +86,29 @@ export const Header = ({
         </div>
 
         <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 sm:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="icon-sm"
+                    className="border border-border bg-card text-muted-foreground shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:text-foreground"
+                    aria-label="Workflow actions"
+                  >
+                    <MoreHorizontal className="size-4" />
+                  </Button>
+                }
+              />
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>Save</DropdownMenuItem>
+                <DropdownMenuItem>Run</DropdownMenuItem>
+                <DropdownMenuItem>Export</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
           <div className="hidden items-center gap-2 rounded-xl border border-border bg-card p-1.5 shadow-[0_1px_3px_rgba(0,0,0,0.05)] sm:flex">
             <Button variant="outline" size="sm" className="gap-1.5">
               <Save className="size-4" />

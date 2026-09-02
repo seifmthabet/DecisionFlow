@@ -29,6 +29,8 @@ import {
   Workflow,
 } from "lucide-react";
 
+
+//TODO: Add a type for navigation items, links
 const navigationItems = [
   {
     label: "Overview",
