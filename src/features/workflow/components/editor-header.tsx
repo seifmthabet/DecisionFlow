@@ -44,7 +44,7 @@ function SidebarToggleButton() {
   );
 }
 
-export const Header = ({
+export const EditorHeader = ({
   title,
   status,
 }: {

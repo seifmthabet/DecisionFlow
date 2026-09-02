@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { Input } from '../ui/input';
+import { Input } from '@/components/ui/input';
 import { Search, PlayCircle, StopCircle, Sparkles } from 'lucide-react';
 
 const WorkflowSidebar = () => {

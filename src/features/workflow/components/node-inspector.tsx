@@ -2,11 +2,11 @@
 
 import { SlidersHorizontal, X } from 'lucide-react';
 import React from 'react'
-import { Button } from '../ui/button';
-import { Label } from '../ui/label';
-import { Input } from '../ui/input';
-import { Textarea } from '../ui/textarea';
-import { Combobox,ComboboxInput, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList } from '../ui/combobox';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Combobox,ComboboxInput, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
 
 const NodeInspector = () => {
   const models = [

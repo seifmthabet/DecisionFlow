@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
     "http://localhost:3001",
     "192.168.1.35",
   ],
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/workflows",
+        permanent: false,
+      },
+    ]
+  }
 };
 
 export default nextConfig;

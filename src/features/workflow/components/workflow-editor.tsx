@@ -1,7 +1,7 @@
 import React from "react";
-import WorkflowSidebar from "@/components/workflow/WorkflowSidebar";
-import WorkflowCanvas from "./WorkflowCanvas";
-import NodeInspector from "./NodeInspector";
+import WorkflowSidebar from "./workflow-sidebar";
+import WorkflowCanvas from "./workflow-canvas";
+import NodeInspector from "./node-inspector";
 
 const WorkflowEditor = () => {
   return (
