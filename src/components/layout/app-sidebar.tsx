@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-
 import {
   Activity,
   History,
@@ -28,7 +27,8 @@ import {
   UserRound,
   Workflow,
 } from "lucide-react";
-
+import Image from "next/image";
+import Link from "next/link";
 
 //TODO: Add a type for navigation items, links
 const navigationItems = [
@@ -62,39 +62,20 @@ export const AppSidebar = () => {
     <Sidebar collapsible="icon">
       <SidebarHeader className={isCompact ? "items-center p-2" : "gap-3"}>
         {isCompact ? (
-          <div className="flex size-8 items-center justify-center rounded-md border border-sidebar-border bg-primary text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-foreground shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
-            DF
-          </div>
-        ) : (
-          <div className="rounded-lg border border-sidebar-border bg-white/80 p-2.5 sm:p-3">
-            <div className="flex items-center gap-3">
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary text-sm font-semibold text-primary-foreground sm:size-10">
-                DF
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="min-w-0">
-                    <p className="truncate font-display text-sm font-semibold text-sidebar-foreground sm:text-base">
-                      Decision Flow
-                    </p>
-                    <p className="truncate text-[11px] text-sidebar-foreground/60 sm:text-xs">
-                      FlowAI workspace
-                    </p>
-                  </div>
-
-                  <span className="inline-flex items-center rounded-full border border-sidebar-border bg-sidebar-accent px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-sidebar-foreground/70">
-                    Live
-                  </span>
-                </div>
-
-                <p className="mt-2 text-[11px] leading-5 text-sidebar-foreground/65 sm:text-xs">
-                  High-density command surface for building, running, and
-                  inspecting decision flows.
-                </p>
-              </div>
+          <Link href="/">
+            <div className="flex size-8 items-center justify-center rounded-md border border-sidebar-border bg-primary text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-foreground shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
+              DF
             </div>
-          </div>
+          </Link>
+        ) : (
+          <Link href="/" className="flex items-center justify-center gap-3 m-0 p-0 " >
+            <Image
+              src="/logos/logo.png"
+              alt="Decision Flow Logo"
+              width={150}
+              height={150}
+            />
+          </Link>
         )}
       </SidebarHeader>
 

@@ -69,6 +69,40 @@ const RegisterForm = () => {
     );
   };
 
+  const onGithubSignIn = async () => {
+    await authClient.signIn.social(
+      {
+        provider: "github",
+        callbackURL: "/",
+      },
+      {
+        onSuccess: () => {
+          router.push("/workflows");
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+        },
+      },
+    );
+  };
+
+  const onGoogleSignIn = async () => {
+    await authClient.signIn.social(
+      {
+        provider: "google",
+        callbackURL: "/",
+      },
+      {
+        onSuccess: () => {
+          router.push("/workflows");
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+        },
+      },
+    );
+  };
+
   const isPending = form.formState.isSubmitting;
 
   return (
@@ -86,6 +120,7 @@ const RegisterForm = () => {
                   variant="outline"
                   className="w-full"
                   type="button"
+                  onClick={onGithubSignIn}
                   disabled={isPending}
                 >
                   <Image
@@ -100,6 +135,7 @@ const RegisterForm = () => {
                   variant="outline"
                   className="w-full"
                   type="button"
+                  onClick={onGoogleSignIn}
                   disabled={isPending}
                 >
                   <Image

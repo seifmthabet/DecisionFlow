@@ -61,6 +61,40 @@ const LoginForm = () => {
     );
   };
 
+  const onGithubSignIn = async () => {
+    await authClient.signIn.social(
+      {
+        provider: "github",
+        callbackURL: "/",
+      },
+      {
+        onSuccess: () => {
+          router.push("/workflows");
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+        },
+      },
+    );
+  };
+
+  const onGoogleSignIn = async () => {
+    await authClient.signIn.social(
+      {
+        provider: "google",
+        callbackURL: "/",
+      },
+      {
+        onSuccess: () => {
+          router.push("/workflows");
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+        },
+      },
+    );
+  };
+
   const isPending = form.formState.isSubmitting;
 
   return (
@@ -79,6 +113,7 @@ const LoginForm = () => {
                   className="w-full"
                   type="button"
                   disabled={isPending}
+                  onClick={onGithubSignIn}
                 >
                   <Image
                     src="/logos/github.svg"
@@ -93,6 +128,7 @@ const LoginForm = () => {
                   className="w-full"
                   type="button"
                   disabled={isPending}
+                  onClick={onGoogleSignIn}
                 >
                   <Image
                     src="/logos/google.png"
